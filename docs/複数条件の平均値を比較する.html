@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Chapter 6 複数条件の平均値を比較する | 卒論のデータをRで分析する</title>
+  <meta name="description" content="Chapter 6 複数条件の平均値を比較する | 卒論のデータをRで分析する" />
+  <meta name="generator" content="bookdown 0.20 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Chapter 6 複数条件の平均値を比較する | 卒論のデータをRで分析する" />
+  <meta property="og:type" content="book" />
+  
+  
+  
+  <meta name="github-repo" content="rstudio/bookdown-demo" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Chapter 6 複数条件の平均値を比較する | 卒論のデータをRで分析する" />
+  
+  
+  
+
+<meta name="author" content="Honami K" />
+
+
+<meta name="date" content="2020-10-27" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="つの平均値を比較する.html"/>
+<link rel="next" href="要因の分散分析.html"/>
+<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+
+
+
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">Statistics with R</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> はじめに</a><ul>
+<li class="chapter" data-level="1.1" data-path="index.html"><a href="index.html#rのインストール"><i class="fa fa-check"></i><b>1.1</b> Rのインストール</a></li>
+<li class="chapter" data-level="1.2" data-path="index.html"><a href="index.html#rstudioのインストール"><i class="fa fa-check"></i><b>1.2</b> Rstudioのインストール</a></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="files.html"><a href="files.html"><i class="fa fa-check"></i><b>2</b> ファイルを読み込む</a><ul>
+<li class="chapter" data-level="2.1" data-path="files.html"><a href="files.html#read_csvcsvファイルを読み込む"><i class="fa fa-check"></i><b>2.1</b> <code>read_csv</code>：CSVファイルを読み込む</a></li>
+<li class="chapter" data-level="2.2" data-path="files.html"><a href="files.html#read_xlsxxlsx-excel-ファイルを読み込む"><i class="fa fa-check"></i><b>2.2</b> <code>read_xlsx</code>：xlsx (Excel) ファイルを読み込む</a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="グラフを描く.html"><a href="グラフを描く.html"><i class="fa fa-check"></i><b>3</b> グラフを描く</a><ul>
+<li class="chapter" data-level="3.1" data-path="グラフを描く.html"><a href="グラフを描く.html#いろいろなグラフ"><i class="fa fa-check"></i><b>3.1</b> いろいろなグラフ</a><ul>
+<li class="chapter" data-level="3.1.1" data-path="グラフを描く.html"><a href="グラフを描く.html#折れ線グラフ"><i class="fa fa-check"></i><b>3.1.1</b> 折れ線グラフ</a></li>
+<li class="chapter" data-level="3.1.2" data-path="グラフを描く.html"><a href="グラフを描く.html#棒グラフ"><i class="fa fa-check"></i><b>3.1.2</b> 棒グラフ</a></li>
+</ul></li>
+<li class="chapter" data-level="3.2" data-path="グラフを描く.html"><a href="グラフを描く.html#デザインの調整"><i class="fa fa-check"></i><b>3.2</b> デザインの調整</a><ul>
+<li class="chapter" data-level="3.2.1" data-path="グラフを描く.html"><a href="グラフを描く.html#エラーバー"><i class="fa fa-check"></i><b>3.2.1</b> エラーバー</a></li>
+<li class="chapter" data-level="3.2.2" data-path="グラフを描く.html"><a href="グラフを描く.html#色"><i class="fa fa-check"></i><b>3.2.2</b> 色</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="統計的仮説検定の基礎.html"><a href="統計的仮説検定の基礎.html"><i class="fa fa-check"></i><b>4</b> 統計的仮説検定の基礎</a></li>
+<li class="chapter" data-level="5" data-path="つの平均値を比較する.html"><a href="つの平均値を比較する.html"><i class="fa fa-check"></i><b>5</b> 2つの平均値を比較する</a></li>
+<li class="chapter" data-level="6" data-path="複数条件の平均値を比較する.html"><a href="複数条件の平均値を比較する.html"><i class="fa fa-check"></i><b>6</b> 複数条件の平均値を比較する</a></li>
+<li class="chapter" data-level="7" data-path="要因の分散分析.html"><a href="要因の分散分析.html"><i class="fa fa-check"></i><b>7</b> 2要因の分散分析</a></li>
+<li class="chapter" data-level="8" data-path="カテゴリカル変数の分析.html"><a href="カテゴリカル変数の分析.html"><i class="fa fa-check"></i><b>8</b> カテゴリカル変数の分析</a></li>
+<li class="chapter" data-level="9" data-path="ベイズ統計学の基礎.html"><a href="ベイズ統計学の基礎.html"><i class="fa fa-check"></i><b>9</b> ベイズ統計学の基礎</a></li>
+<li class="divider"></li>
+<li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">卒論のデータをRで分析する</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="複数条件の平均値を比較する" class="section level1">
+<h1><span class="header-section-number">Chapter 6</span> 複数条件の平均値を比較する</h1>
+
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="つの平均値を比較する.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="要因の分散分析.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": "https://github.com/rstudio/bookdown-demo/edit/master/05-one-way-anova.Rmd",
+"text": "Edit"
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": ["bookdown-demo.pdf", "bookdown-demo.epub"],
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+</body>
+
+</html>
