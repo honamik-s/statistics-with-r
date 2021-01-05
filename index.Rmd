@@ -1,5 +1,5 @@
 --- 
-title: "卒論のデータをRで分析する"
+title: "Rで統計を勉強する"
 author: "Honami K"
 date: "`r Sys.Date()`"
 site: bookdown::bookdown_site
